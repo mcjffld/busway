@@ -1,39 +1,95 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta charset="utf-8">
-    <title>KML Layers</title>
-    <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 100%;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="map"></div>
-    <script>
+<head>
+  <meta name="viewport" content="initial-scale=1.0">
+  <meta charset="utf-8">
+  <title>CTFastrak Current Location Map</title>
+  <style>
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  #map {
+    height: 100%;
+  }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script>
 
-function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 9,
-    center: {lat: 41.876, lng: -72.624}
-  });
+  var map;
+  var buswayLayer;
 
-  var ctaLayer = new google.maps.KmlLayer({
-    url: 'http://busway-dev.elasticbeanstalk.com/api/busway',
-    map: map
-  });
-}
+  var baseURL = 'http://busway.elasticbeanstalk.com/api/busway';
 
-    </script>
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbUsCD4M3wLWtIXdVmQqU3UemEro-MKoo&signed_in=true&callback=initMap">
-    </script>
-  </body>
+  var refreshTime = 60000;
+
+  function updateMap(latitude, longitude) {
+
+    buswayLayer.setMap(null);
+
+    var url = baseURL;
+
+    if (latitude && longitude) {
+      url += '?userLat=' + latitude + '&userLong=' + longitude + '&key=' + Math.random();
+    } else {
+      url += '?key=' + Math.random();
+    }
+
+    buswayLayer = new google.maps.KmlLayer({
+      url: url,
+      map: map,
+      preserveViewport: true
+    });
+
+    setTimeout(updateMap, refreshTime, latitude, longitude);
+
+  };
+
+  function render(latitude, longitude) {
+    var url = baseURL;
+    if (latitude && longitude) {
+      url += '?userLat=' + latitude + '&userLong=' + longitude;
+    }
+
+    var locallatitude = latitude || 41.8;
+    var locallongitude = longitude || -72.624;
+
+    map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 9,
+      center: {lat: locallatitude, lng: locallongitude}
+    });
+
+    buswayLayer = new google.maps.KmlLayer({
+      url: url,
+      map: map
+    });
+
+    setTimeout(updateMap, refreshTime, latitude, longitude);
+
+  };
+
+  function initMap() {
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          render(position.coords.latitude, position.coords.longitude);
+        }, function(error) {
+          console.log (error);
+          render();
+        });
+    } else {
+      render();
+    }
+
+  }
+
+
+  </script>
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbUsCD4M3wLWtIXdVmQqU3UemEro-MKoo&signed_in=true&callback=initMap">
+  </script>
+</body>
 </html>
