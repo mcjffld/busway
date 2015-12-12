@@ -8,6 +8,15 @@
 console.log ('loading');
 
 var mappings = [
+  {id: '7932', name: 'Route 101 to Hartford/New Britain'},
+  {id: '7933', name: 'Route 102 to Hartford/New Britain and Bristol'},
+  {id: '7934', name: 'Route 121 to Hartford/MCC/UConn Health'},
+  {id: '7935', name: 'Route 128 to Hartford/Westfarms Mall/New Britain'},
+  {id: '7936', name: 'Route 140 to CCSU'},
+  {id: '7937', name: 'Route 144 to Westfarms/Wethersfield'},
+  {id: '7938', name: 'Route 153 to Flatbush/Copaco Shopping Center'},
+  {id: '7939', name: 'Route 161 to St. Francis Hospital/Hartford Hospital'},
+  {id: '7995', name: 'Route 928 to Hartford/Waterbury'},
   {id: '7679', name: 'Route 101 to Hartford/New Britain'},
   {id: '7680', name: 'Route 102 to Hartford/New Britain and Bristol'},
   {id: '7681', name: 'Route 121 to Hartford/MCC/UConn Health'},
@@ -41,6 +50,8 @@ var mappings = [
   {id: '7702', name: 'Out of service/layover'}
 
 ];
+
+
 
 function mapRouteId(routeId) {
   var routeString = 'Route Id ' + routeId;
