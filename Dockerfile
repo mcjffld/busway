@@ -1,10 +1,11 @@
-FROM   node:0.12
+FROM node:4.3.0
 
-# Bundle app source
-COPY . /src
-# Install app dependencies
-RUN cd /src; npm install
+COPY ./dist /src
 
-EXPOSE 9000
+ENV NODE_ENV=production
+
+RUN cd /src && npm install --production
+
+EXPOSE 8081
 
 CMD ["node", "/src/server/app.js"]

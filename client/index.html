@@ -7,22 +7,80 @@
   <style>
   html, body {
     height: 100%;
-    margin: 0;
-    padding: 0;
+    width: 1328px;
+    margin: 5;
+    padding: 5;
+    margin: auto;
+
   }
   #map {
     height: 100%;
+    width: 728px;
   }
+
+  .top {
+    padding-left: 300px;
+    display: none;
+  }
+
+  .right {
+    float: right;
+    width: 300px;
+    display: none;
+  }
+  .left {
+    float: left;
+    width: 300px;
+    display: none;
+  }
+
   </style>
 </head>
 <body>
+
+  <div class="top">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- top -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-9564089853862259"
+     data-ad-slot="9303305873"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<div class="right">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- right -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:300px;height:600px"
+     data-ad-client="ca-pub-9564089853862259"
+     data-ad-slot="4733505471"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+
+<div class="left">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- left -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:300px;height:600px"
+     data-ad-client="ca-pub-9564089853862259"
+     data-ad-slot="3117171474"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+  </div>
   <div id="map"></div>
   <script>
 
   var map;
   var buswayLayer;
 
-  var baseURL = 'http://busway.elasticbeanstalk.com/api/busway';
+  var baseURL = 'http://busway-dev.elasticbeanstalk.com/api/busway';
 
   var refreshTime = 60000;
 

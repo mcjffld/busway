@@ -6,7 +6,6 @@
 
 var express = require('express');
 var favicon = require('serve-favicon');
-var morgan = require('morgan');
 var compression = require('compression');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
@@ -39,7 +38,6 @@ module.exports = function(app) {
     app.use(express.static(path.join(config.root, '.tmp')));
     app.use(express.static(path.join(config.root, 'client')));
     app.set('appPath', path.join(config.root, 'client'));
-    app.use(morgan('dev'));
     app.use(errorHandler()); // Error handler - has to be last
   }
 };
