@@ -4,8 +4,10 @@ COPY ./dist /src
 
 ENV NODE_ENV=production
 
+ENV PORT=80
+
 RUN cd /src && npm install --production
 
-EXPOSE 8081
+EXPOSE 80
 
 CMD ["node", "/src/server/app.js"]
