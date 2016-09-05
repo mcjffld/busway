@@ -131,7 +131,7 @@
 
   function initMap() {
 
-    if (navigator.geolocation) {
+    if (navigator.geolocation && location.protocol === 'https:') {
         navigator.geolocation.getCurrentPosition(function(position) {
           render(position.coords.latitude, position.coords.longitude);
         }, function(error) {
